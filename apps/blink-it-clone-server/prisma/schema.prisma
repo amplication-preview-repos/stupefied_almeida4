@@ -1,0 +1,58 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Pharmacy {
+  createdAt      DateTime  @default(now())
+  description    String?
+  expirationDate DateTime?
+  id             String    @id @default(cuid())
+  name           String?
+  price          Float?
+  updatedAt      DateTime  @updatedAt
+}
+
+model Bakery {
+  bakedOn     DateTime?
+  createdAt   DateTime  @default(now())
+  description String?
+  id          String    @id @default(cuid())
+  name        String?
+  price       Float?
+  updatedAt   DateTime  @updatedAt
+}
+
+model Grocery {
+  createdAt   DateTime @default(now())
+  description String?
+  id          String   @id @default(cuid())
+  name        String?
+  price       Float?
+  quantity    Int?
+  updatedAt   DateTime @updatedAt
+}
+
+model BakeryItem {
+  createdAt   DateTime @default(now())
+  description String?
+  id          String   @id @default(cuid())
+  name        String?
+  price       Float?
+  updatedAt   DateTime @updatedAt
+}
+
+model Order {
+  contactDetails    String?
+  createdAt         DateTime  @default(now())
+  customerName      String?
+  id                String    @id @default(cuid())
+  medsRequired      String?
+  orderDate         DateTime?
+  prescriptionImage Json?
+  updatedAt         DateTime  @updatedAt
+}
